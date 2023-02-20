@@ -1,3 +1,4 @@
 export enum LoanConstants {
-  ILoanRepository = 'ILoanRepository'
+  ILoanRepository = 'ILoanRepository',
+  ILoanDatasource = 'ILoanDatasource'
 }

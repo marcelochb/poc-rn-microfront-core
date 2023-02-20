@@ -4,7 +4,7 @@ import { LoanConstants } from "../../../../core/constants";
 import { ILoanRepository } from "../repositories";
 
 export interface IGetListLoanUsecase {
-  call():Promise<LoanEntity[] | Error>;
+  call():Promise<LoanEntity[]>;
 }
 
 @injectable()
@@ -15,7 +15,7 @@ export class GetListLoanUsecase implements IGetListLoanUsecase {
     private readonly repository: ILoanRepository
   ) {}
 
-  async call(): Promise<Error | LoanEntity[]> {
+  async call(): Promise<LoanEntity[]> {
     return await this.repository.getList();
   }
 
