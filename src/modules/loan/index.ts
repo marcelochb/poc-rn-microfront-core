@@ -1,0 +1,1 @@
+export {useLoanListController} from './presenter/list/controller';
