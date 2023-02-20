@@ -1,7 +1,7 @@
 import { LoanEntity } from "../entities";
 import { inject, injectable } from "tsyringe";
-import { LoanConstants } from "../../../../core/constants";
 import { ILoanRepository } from "../repositories";
+import { LoanConstants } from "../../../../core";
 
 export interface IGetListLoanUsecase {
   call():Promise<LoanEntity[]>;

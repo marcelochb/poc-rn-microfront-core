@@ -1,0 +1,1 @@
+export {LoanRepository} from './loan_repository';
