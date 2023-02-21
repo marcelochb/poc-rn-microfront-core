@@ -9,7 +9,7 @@ export class ApiClient implements IApiClient {
 
   constructor() {
     this.api = axios.create({
-      baseURL: 'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean',
+      baseURL: 'http://localhost:3000',
     })
   }
 

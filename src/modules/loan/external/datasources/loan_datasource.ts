@@ -13,12 +13,12 @@ export class LoanDatasource implements ILoanDatasource {
     private readonly apiClient: IApiClient
   ) {}
   async getList(): Promise<LoanModel[]> {
-    const response =  await this.apiClient.get<LoanModel[]>('') as AxiosResponse<LoanModel[]>;
+    const response =  await this.apiClient.get<LoanModel[]>('/loan') as AxiosResponse<LoanModel[]>;
     return response.data.map(body => LoanModel.fromMap(body));
   }
 
   async getBy({ id }: IProps): Promise<LoanModel> {
-    const response =  await this.apiClient.get<LoanModel>(id) as AxiosResponse<LoanModel>;
+    const response =  await this.apiClient.get<LoanModel>(`/loan/${id}`) as AxiosResponse<LoanModel>;
     return LoanModel.fromMap(response);
   }
 
