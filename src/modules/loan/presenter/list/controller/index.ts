@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import { container } from "tsyringe";
 import {useNavigation} from '@react-navigation/native';
-import {LOAN_NAVIGATORS} from '@poc/loan';
 import { LoanConstants } from "../../../../../core";
 import { LoanEntity } from "../../../domain";
 import { IGetListLoanUsecase } from "../../../domain/usecases/get_list_loan_usecase";
 import { loanDependences } from "../bind";
+import { LOAN_NAVIGATORS } from "@poc/tools";
 
 loanDependences();
 export const useLoanListController = () => {
@@ -33,9 +33,8 @@ export const useLoanListController = () => {
     },[]
   )
 
-  const navigateToDetail = (id: string) => navigation.navigate(LOAN_NAVIGATORS.stack, 
+  const navigateToDetail = (id: string) => navigation.navigate(LOAN_NAVIGATORS.screens.detail.name, 
     {
-      screen: LOAN_NAVIGATORS.screens.detail,
       params: {id}
     })
   
