@@ -4,14 +4,14 @@ interface IProps {
   id: string,
   name: string,
   type: string,
-  amount: number
+  amount: string
 }
 
 export class LoanModel extends LoanEntity {
   id: string;
   name: string;
   type: string;
-  amount: number;
+  amount: string;
 
   constructor({id, name, type, amount}:IProps) {
     super({id, name, type, amount})
@@ -39,7 +39,7 @@ export class LoanModel extends LoanEntity {
       id: body.id,
       name: body.name,
       type: body.type,
-      amount: body.amount
+      amount: `R$ ${Number.parseFloat(body.amount).toLocaleString("pt-BR")}`
     });
   }
 

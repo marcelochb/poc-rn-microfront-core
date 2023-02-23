@@ -18,8 +18,9 @@ export class LoanRepository implements ILoanRepository {
     const response = await this.datasource.getList() as LoanModel[];
     return LoanModel.toEntityList(response);
   }
-  getBy({ id }: IProps): Promise<LoanEntity> {
-    throw new Error("Method not implemented.");
+  async getBy({ id }: IProps): Promise<LoanEntity> {
+    const response = await this.datasource.getBy({id});
+    return LoanModel.toEntity(response);
   }
 
   

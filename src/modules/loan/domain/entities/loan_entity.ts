@@ -2,13 +2,13 @@ interface IProps {
   id: string,
   name: string,
   type: string,
-  amount: number
+  amount: string
 }
 export class LoanEntity {
   id: string;
   name: string;
   type: string;
-  amount: number;
+  amount: string;
 
   constructor ({
     id,

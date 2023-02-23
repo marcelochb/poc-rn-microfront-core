@@ -2,5 +2,6 @@ export enum LoanConstants {
   ILoanRepository = 'ILoanRepository',
   ILoanDatasource = 'ILoanDatasource',
   IApiClient = 'IApiClient',
-  GetListLoanUsecase = 'GetListLoanUsecase'
+  GetListLoanUsecase = 'GetListLoanUsecase',
+  GetByLoanUsecase = 'GetByLoanUsecase'
 }
