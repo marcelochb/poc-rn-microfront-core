@@ -2,12 +2,11 @@ import { useEffect, useState } from "react"
 import { container } from "tsyringe";
 import {useNavigation} from '@react-navigation/native';
 import { LoanConstants } from "../../../../../core";
-import { LoanEntity } from "../../../domain";
-import { IGetListLoanUsecase } from "../../../domain/usecases/get_list_loan_usecase";
-import { loanDependences } from "../bind";
+import { IGetListLoanUsecase, LoanEntity } from "../../../domain";
+import { loanListDependences } from "../bind";
 import { LOAN_NAVIGATORS } from "@poc/tools";
 
-loanDependences();
+loanListDependences();
 export const useLoanListController = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
