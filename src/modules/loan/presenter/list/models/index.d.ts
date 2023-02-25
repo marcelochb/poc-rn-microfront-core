@@ -7,7 +7,7 @@ interface returnUseLoanListController {
     error:boolean;
   },
   handleController: {
-    navigateToDetail: () => void;
+    navigateToDetail: (id:string) => void;
   }
 }
 

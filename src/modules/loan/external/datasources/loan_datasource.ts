@@ -19,7 +19,7 @@ export class LoanDatasource implements ILoanDatasource {
 
   async getBy({ id }: IProps): Promise<LoanModel> {
     const response =  await this.apiClient.get<LoanModel>(`/loan/${id}`) as AxiosResponse<LoanModel>;
-    return LoanModel.fromMap(response);
+    return LoanModel.fromMap(response.data);
   }
 
   

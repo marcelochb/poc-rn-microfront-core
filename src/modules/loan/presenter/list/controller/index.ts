@@ -32,10 +32,9 @@ export const useLoanListController = () => {
     },[]
   )
 
-  const navigateToDetail = (id: string) => navigation.navigate(LOAN_NAVIGATORS.screens.detail.name, 
-    {
-      params: {id}
-    })
+  const navigateToDetail = (id: string) => {
+    navigation.navigate(LOAN_NAVIGATORS.screens.detail.name, {id});
+  }
   
   return {
     getController: {loading, error, loans},

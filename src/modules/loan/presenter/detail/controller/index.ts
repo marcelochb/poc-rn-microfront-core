@@ -10,7 +10,7 @@ loanDetailDependences();
 export const useLoanDetailController = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [loan, setLoan] = useState<LoanEntity>();
+  const [loan, setLoan] = useState<LoanEntity>({} as LoanEntity);
   const useCase = container.resolve<IGetByLoanUsecase>(LoanConstants.GetByLoanUsecase);
   const route = useRoute<ModelOfLoanDetailNavigationRoute>();
   useEffect(
