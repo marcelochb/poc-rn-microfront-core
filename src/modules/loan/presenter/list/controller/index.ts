@@ -5,9 +5,10 @@ import { LoanConstants } from "../../../../../core";
 import { IGetListLoanUsecase, LoanEntity } from "../../../domain";
 import { loanListDependences } from "../bind";
 import { LOAN_NAVIGATORS } from "@poc/tools";
+import { IController } from "@poc/interfaces";
 
 loanListDependences();
-export const useLoanListController = () => {
+export const useLoanListController = ():IController<LoanEntity[]> => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [loans, setLoans] = useState<LoanEntity[]>([]);
@@ -31,13 +32,8 @@ export const useLoanListController = () => {
       loadData();
     },[]
   )
-
-  const navigateToDetail = (id: string) => {
-    navigation.navigate(LOAN_NAVIGATORS.screens.detail.name, {id});
-  }
   
   return {
-    getController: {loading, error, loans},
-    handleController: {navigateToDetail}
+    getController: {loading, error, data:loans}
   }
 }
