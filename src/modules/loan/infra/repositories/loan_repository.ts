@@ -14,10 +14,16 @@ export class LoanRepository implements ILoanRepository {
     private readonly datasource: ILoanDatasource
   ) {}
 
+  async create(loan: LoanEntity): Promise<LoanEntity> {
+    const model = LoanModel.fromEntity(loan);
+    return await this.datasource.create(model);
+  }
+
   async getList(): Promise<LoanEntity[]> {
     const response = await this.datasource.getList() as LoanModel[];
     return LoanModel.toEntityList(response);
   }
+  
   async getBy({ id }: IProps): Promise<LoanEntity> {
     const response = await this.datasource.getBy({id});
     return LoanModel.toEntity(response);

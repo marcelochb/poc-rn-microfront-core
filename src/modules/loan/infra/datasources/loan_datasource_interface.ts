@@ -5,5 +5,6 @@ interface IProps {
 }
 export interface ILoanDatasource {
   getList(): Promise<LoanModel[]>;
-  getBy({id}:IProps): Promise<LoanModel>
+  getBy({id}:IProps): Promise<LoanModel>;
+  create(loan:LoanModel): Promise<LoanModel>;
 }
