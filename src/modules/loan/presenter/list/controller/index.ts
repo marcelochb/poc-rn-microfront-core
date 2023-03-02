@@ -4,7 +4,6 @@ import {useNavigation} from '@react-navigation/native';
 import { LoanConstants } from "../../../../../core";
 import { IGetListLoanUsecase, LoanEntity } from "../../../domain";
 import { loanListDependences } from "../bind";
-import { LOAN_NAVIGATORS } from "@poc/tools";
 import { IController } from "@poc/interfaces";
 
 loanListDependences();

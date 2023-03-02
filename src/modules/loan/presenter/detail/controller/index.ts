@@ -5,7 +5,7 @@ import { container } from "tsyringe";
 import { LoanConstants } from "../../../../../core";
 import { IGetByLoanUsecase, LoanEntity } from "../../../domain";
 import { loanDetailDependences } from "../bind";
-import { ModelOfLoanDetailNavigationRoute } from "../models";
+import { ILoanDetailNavigationRoute } from "../models";
 
 loanDetailDependences();
 export const useLoanDetailController = ():IController<LoanEntity> => {
@@ -13,7 +13,7 @@ export const useLoanDetailController = ():IController<LoanEntity> => {
   const [error, setError] = useState(false);
   const [loan, setLoan] = useState<LoanEntity>({} as LoanEntity);
   const useCase = container.resolve<IGetByLoanUsecase>(LoanConstants.GetByLoanUsecase);
-  const route = useRoute<ModelOfLoanDetailNavigationRoute>();
+  const route = useRoute<ILoanDetailNavigationRoute>();
   useEffect(
     () => {
       const loadData = async () => {
