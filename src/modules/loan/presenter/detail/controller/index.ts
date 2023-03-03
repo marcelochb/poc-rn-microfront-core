@@ -1,4 +1,4 @@
-import { IController } from "@poc/interfaces";
+import { IControllerGetData } from "@poc/interfaces";
 import { useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { container } from "tsyringe";
@@ -8,7 +8,7 @@ import { loanDetailDependences } from "../bind";
 import { ILoanDetailNavigationRoute } from "../models";
 
 loanDetailDependences();
-export const useLoanDetailController = ():IController<LoanEntity> => {
+export const useLoanDetailController = ():IControllerGetData<LoanEntity> => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [loan, setLoan] = useState<LoanEntity>({} as LoanEntity);
@@ -32,7 +32,5 @@ export const useLoanDetailController = ():IController<LoanEntity> => {
     },[]
   )
 
-  return {
-    getController: {loading, error, data:loan}
-  }
+  return {loading, error, data:loan}
 }

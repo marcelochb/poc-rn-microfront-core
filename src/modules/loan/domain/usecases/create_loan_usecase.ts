@@ -4,7 +4,7 @@ import { ILoanRepository } from "../repositories";
 import { LoanConstants } from "../../../../core";
 
 export interface ICreateLoanUsecase {
-  call(loan:LoanEntity):Promise<LoanEntity>;
+  call(loan:LoanEntity):Promise<void>;
 }
 
 @injectable()
@@ -15,8 +15,8 @@ export class CreateLoanUsecase implements ICreateLoanUsecase {
     private readonly repository: ILoanRepository
   ) {}
 
-  async call(loan:LoanEntity): Promise<LoanEntity> {
-    return await this.repository.create(loan);
+  async call(loan:LoanEntity): Promise<void> {
+    await this.repository.create(loan);
   }
 
 }

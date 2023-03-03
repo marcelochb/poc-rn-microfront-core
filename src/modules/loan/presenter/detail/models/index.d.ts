@@ -1,4 +1,4 @@
-import { IController } from "@poc/interfaces";
+import { IControllerGetData } from "@poc/interfaces";
 import { RouteProp } from "@react-navigation/native";
 import { LoanEntity } from "../../../domain";
 
@@ -10,4 +10,4 @@ type ILoanDetailNavigationParams ={
 
 type ILoanDetailNavigationRoute = RouteProp<ILoanDetailNavigationParams, 'params'>;
 
-export function useLoanDetailController(): IController<LoanEntity>;
+export function useLoanDetailController(): IControllerGetData<LoanEntity>;

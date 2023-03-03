@@ -7,5 +7,5 @@ interface IProps {
 export interface ILoanRepository {
   getList(): Promise<LoanEntity[]>;
   getBy({id}:IProps): Promise<LoanEntity>;
-  create(loan:LoanEntity): Promise<LoanEntity>;
+  create(loan:LoanEntity): Promise<void>;
 }

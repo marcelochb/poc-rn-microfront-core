@@ -1,8 +1,8 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 export interface IApiClient {
-  get<T>(url:string): Promise<AxiosResponse<T>| Error>;
-  post<T>(body:T): Promise<AxiosResponse<T> | Error>;
+  get<T>(url:string): Promise<AxiosResponse<T, any>>;
+  post<T>(body:T): Promise<void>;
 }
 
 export class ApiClient implements IApiClient {
@@ -13,16 +13,15 @@ export class ApiClient implements IApiClient {
       baseURL: 'http://localhost:3000',
     })
   }
-  async post<T>(body: T): Promise<Error | AxiosResponse<T, any>> {
+  async post<T>(body: T): Promise<void> {
     try {
       await this.api.post<T>('/post',body);
-      return body as AxiosResponse<T>;
     } catch (error) {
       throw error
     }
   }
 
-  async get<T>(url:string): Promise<Error | AxiosResponse<T, any>> {
+  async get<T>(url:string): Promise<AxiosResponse<T, any>> {
     try {
       return await this.api.get<T>(url);
     } catch (error) {

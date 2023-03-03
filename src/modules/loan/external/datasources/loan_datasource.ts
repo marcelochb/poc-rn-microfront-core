@@ -12,16 +12,16 @@ export class LoanDatasource implements ILoanDatasource {
     @inject(LoanConstants.IApiClient)
     private readonly apiClient: IApiClient
   ) {}
-  create(loan: LoanModel): Promise<LoanModel> {
-    throw new Error("Method not implemented.");
+  async create(loan: LoanModel): Promise<void> {
+    await this.apiClient.post<LoanModel>(loan);
   }
   async getList(): Promise<LoanModel[]> {
-    const response =  await this.apiClient.get<LoanModel[]>('/loan') as AxiosResponse<LoanModel[]>;
+    const response =  await this.apiClient.get<LoanModel[]>('/loan');
     return response.data.map(body => LoanModel.fromMap(body));
   }
 
   async getBy({ id }: IProps): Promise<LoanModel> {
-    const response =  await this.apiClient.get<LoanModel>(`/loan/${id}`) as AxiosResponse<LoanModel>;
+    const response =  await this.apiClient.get<LoanModel>(`/loan/${id}`);
     return LoanModel.fromMap(response.data);
   }
 

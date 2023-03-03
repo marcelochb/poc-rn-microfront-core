@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react"
 import { container } from "tsyringe";
-import {useNavigation} from '@react-navigation/native';
 import { LoanConstants } from "../../../../../core";
 import { IGetListLoanUsecase, LoanEntity } from "../../../domain";
 import { loanListDependences } from "../bind";
-import { IController } from "@poc/interfaces";
+import { IControllerGetData } from "@poc/interfaces";
 
 loanListDependences();
-export const useLoanListController = ():IController<LoanEntity[]> => {
+export const useLoanListController = ():IControllerGetData<LoanEntity[]> => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [loans, setLoans] = useState<LoanEntity[]>([]);
-  const navigation = useNavigation<any>();
   const useCase = container.resolve<IGetListLoanUsecase>(LoanConstants.GetListLoanUsecase);
 
   useEffect(
@@ -32,7 +30,5 @@ export const useLoanListController = ():IController<LoanEntity[]> => {
     },[]
   )
   
-  return {
-    getController: {loading, error, data:loans}
-  }
+  return {loading, error, data:loans}
 }
