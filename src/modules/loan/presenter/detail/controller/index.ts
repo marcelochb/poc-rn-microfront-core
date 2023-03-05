@@ -5,7 +5,7 @@ import { container } from "tsyringe";
 import { LoanConstants } from "../../../../../core";
 import { IGetByLoanUsecase, LoanEntity } from "../../../domain";
 import { loanDetailDependences } from "../bind";
-import { ILoanDetailNavigationRoute } from "../models";
+import { ILoanDetailNavigationRoute } from "../interface";
 
 loanDetailDependences();
 export const useLoanDetailController = ():IControllerGetData<LoanEntity> => {

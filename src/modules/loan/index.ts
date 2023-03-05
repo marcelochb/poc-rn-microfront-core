@@ -1,3 +1,4 @@
+export * from './domain/entities';
 export {useLoanListController} from './presenter/list/controller';
 export {useLoanDetailController} from './presenter/detail/controller';
-export * from './domain/entities';
+export {useLoanCreateController} from './presenter/create/controller';
