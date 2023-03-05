@@ -13,7 +13,7 @@ export class LoanDatasource implements ILoanDatasource {
     private readonly apiClient: IApiClient
   ) {}
   async create(loan: LoanModel): Promise<void> {
-    await this.apiClient.post<LoanModel>(loan);
+    await this.apiClient.post<LoanModel>('/loan',loan);
   }
   async getList(): Promise<LoanModel[]> {
     const response =  await this.apiClient.get<LoanModel[]>('/loan');

@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { container } from "tsyringe";
 import { LoanConstants } from "../../../../../core";
 import { IGetListLoanUsecase, LoanEntity } from "../../../domain";
 import { loanListDependences } from "../bind";
 import { IControllerGetData } from "@poc/interfaces";
+import { useFocusEffect } from "@react-navigation/native";
 
 loanListDependences();
 export const useLoanListController = ():IControllerGetData<LoanEntity[]> => {
@@ -12,12 +13,12 @@ export const useLoanListController = ():IControllerGetData<LoanEntity[]> => {
   const [loans, setLoans] = useState<LoanEntity[]>([]);
   const useCase = container.resolve<IGetListLoanUsecase>(LoanConstants.GetListLoanUsecase);
 
-  useEffect(
-    () => {
-      const loadData = async () => {
+  useFocusEffect(
+    useCallback(() => {
+      let isActive = true;
+  
+      const fetchUser = async () => {
         try {
-          setError(false);
-          setLoading(true);
           const response = await useCase.call();
           setLoans(response);
           setLoading(false);
@@ -26,9 +27,15 @@ export const useLoanListController = ():IControllerGetData<LoanEntity[]> => {
           setError(true);
         }
       };
-      loadData();
-    },[]
-  )
+  
+      if (isActive) fetchUser();
+  
+      return () => {
+        isActive = false;
+        setLoading(true);
+      };
+    }, [])
+  );
   
   return {loading, error, data:loans}
 }
