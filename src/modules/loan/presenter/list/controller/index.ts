@@ -7,7 +7,7 @@ import { IControllerGetData } from "@poc/interfaces";
 import { useFocusEffect } from "@react-navigation/native";
 
 loanListDependences();
-export const useLoanListController = ():IControllerGetData<LoanEntity[]> => {
+export const useLoanListController:IControllerGetData<LoanEntity[]> = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [loans, setLoans] = useState<LoanEntity[]>([]);

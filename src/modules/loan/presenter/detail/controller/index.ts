@@ -8,7 +8,7 @@ import { loanDetailDependences } from "../bind";
 import { ILoanDetailNavigationRoute } from "../interface";
 
 loanDetailDependences();
-export const useLoanDetailController = ():IControllerGetData<LoanEntity> => {
+export const useLoanDetailController:IControllerGetData<LoanEntity> = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [loan, setLoan] = useState<LoanEntity>({} as LoanEntity);

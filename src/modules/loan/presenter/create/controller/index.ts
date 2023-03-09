@@ -7,7 +7,7 @@ import { ICreateLoanUsecase, LoanEntity } from "../../../domain"
 import { loanCreateDependences } from "../bind"
 
 loanCreateDependences();
-export const useLoanCreateController = (callback: Function):IControllerFormData<LoanEntity> => {
+export const useLoanCreateController:IControllerFormData<LoanEntity> = (callback?: Function) => {
   const [error, setError] = useState(false);
   const useCase = container.resolve<ICreateLoanUsecase>(LoanConstants.CreateLoanUsecase);
   const formik = useFormik<LoanEntity>({
@@ -15,7 +15,7 @@ export const useLoanCreateController = (callback: Function):IControllerFormData<
     onSubmit: async (value) => {
       try {
         await useCase.call(value);
-        callback();
+        callback?.call(this);
       } catch (error) {
         setError(true);
       }
