@@ -1,23 +1,64 @@
 import 'reflect-metadata';
-import axios from 'axios';
 import { ILoanDatasource, LoanModel } from '../../../../src/modules/loan/infra';
 import { container } from 'tsyringe';
 import { LoanConstants } from '../../../../src/core';
 import { LoanDatasource } from '../../../../src/modules/loan/external';
-import { getListMock, dataResponse } from '../../../../src/modules/loan/external/mocks';
+import { getListMock, loanModelList, getByMock, loanModel } from '../../../../src/modules/loan/external/mocks';
 
-describe('Loan Datasources =>', () => {
-  it("When request success, return LoanModel's array", async () => {
+describe('Loan Datasources |', () => {
+  it("GetList => When request success, return LoanModel's array", async () => {
     class ApiMockClient {
       get = jest.fn().mockImplementation(() => {
         return getListMock;
       });
     };
-
     container.register(LoanConstants.IApiClient,{useValue: new ApiMockClient()});
     container.register(LoanConstants.ILoanDatasource,{useClass: LoanDatasource});
     const loanDatasource = container.resolve<ILoanDatasource>(LoanConstants.ILoanDatasource);
     const response = await loanDatasource.getList();
-    expect(response).toEqual(dataResponse);
-  })
+    expect(response).toEqual(loanModelList);
+  });
+  it("GetList => When get fail request should return Error", async () => {
+    class ApiMockClient {
+      get = jest.fn().mockRejectedValue(() => {
+        throw Error;
+      });
+    };
+    container.register(LoanConstants.IApiClient,{useValue: new ApiMockClient()});
+    container.register(LoanConstants.ILoanDatasource,{useClass: LoanDatasource});
+    const loanDatasource = container.resolve<ILoanDatasource>(LoanConstants.ILoanDatasource);
+    try {
+      await loanDatasource.getList();
+    } catch (error) {
+      expect(error).toThrowError();
+    }
+  });
+  it("GetBy => When request success, return LoanModel's array", async () => {
+    class ApiMockClient {
+      get = jest.fn().mockImplementation(() => {
+        return getByMock;
+      });
+    };
+    container.register(LoanConstants.IApiClient,{useValue: new ApiMockClient()});
+    container.register(LoanConstants.ILoanDatasource,{useClass: LoanDatasource});
+    const loanDatasource = container.resolve<ILoanDatasource>(LoanConstants.ILoanDatasource);
+    const response = await loanDatasource.getBy({id:'1'});
+    expect(response).toEqual(loanModel);
+  });
+  it("GetBy => When get fail request should return Error", async () => {
+    class ApiMockClient {
+      get = jest.fn().mockRejectedValue(() => {
+        throw Error;
+      });
+    };
+    container.register(LoanConstants.IApiClient,{useValue: new ApiMockClient()});
+    container.register(LoanConstants.ILoanDatasource,{useClass: LoanDatasource});
+    const loanDatasource = container.resolve<ILoanDatasource>(LoanConstants.ILoanDatasource);
+    try {
+      await loanDatasource.getBy({id:'1'});
+    } catch (error) {
+      expect(error).toThrowError();
+    }
+  });
+
 })
