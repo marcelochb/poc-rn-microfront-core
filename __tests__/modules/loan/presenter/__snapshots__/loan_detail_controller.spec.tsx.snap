@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loan Deail Controller => When fail request should retun erro=true 1`] = `
+<Text>
+  comunication fail
+</Text>
+`;
+
+exports[`Loan Deail Controller => When success request should retun IContrllerData<LoanEntity> 1`] = `
+<Text>
+  teste
+</Text>
+`;
+
+exports[`Loan Deail Controller => When success request should retun IContrllerData<T> 1`] = `
+<Text>
+  teste
+</Text>
+`;

@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
-const MockedNavigator: React.FC<{component: () => JSX.Element, params: {}}> = ({component, params = {}}) => {
+export const MockedNavigator: React.FC<{component: () => JSX.Element, params?: {}}> = ({component, params = {}}) => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -16,5 +16,3 @@ const MockedNavigator: React.FC<{component: () => JSX.Element, params: {}}> = ({
     </NavigationContainer>
   );
 };
-
-export default MockedNavigator;
