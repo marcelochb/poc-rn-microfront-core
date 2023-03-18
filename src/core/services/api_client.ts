@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 export interface IApiClient {

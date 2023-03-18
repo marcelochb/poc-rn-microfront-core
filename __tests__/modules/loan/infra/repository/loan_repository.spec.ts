@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
 import { LoanConstants } from '../../../../../src/core';
-import { ILoanRepository } from '../../../../../src/modules/loan/domain';
+import { ILoanRepository, LoanEntity } from '../../../../../src/modules/loan/domain';
 import { getByMock, getListMock, loanEntity, loanEntityList, loanModel, loanModelList } from '../../../../../src/modules/loan/external/mocks';
 import { LoanRepository } from '../../../../../src/modules/loan/infra';
 interface IProps {
@@ -58,6 +58,34 @@ describe('Loan Repository |', () => {
     const loanDatasource = container.resolve<ILoanRepository>(LoanConstants.ILoanRepository);
     try {
       await loanDatasource.getBy({id:'1'});
+    } catch (error) {
+      expect(error).toThrowError();
+    }
+  });
+  it("Create => When request success, return LoanModel's array", async () => {
+    class LoanMockDatasource {
+      create = jest.fn().mockImplementation((loan:LoanEntity) => null);
+    };
+    container.register(LoanConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
+    container.register(LoanConstants.ILoanRepository,{useClass: LoanRepository});
+    const loanDatasource = container.resolve<ILoanRepository>(LoanConstants.ILoanRepository);
+    try {
+      await loanDatasource.create(loanEntity);
+    } catch (error) {
+      expect(error).not.toThrowError()
+    }
+  });
+  it("Create => When get fail request should return Error", async () => {
+    class LoanMockDatasource {
+      create = jest.fn().mockRejectedValue((loan:LoanEntity) => {
+        throw Error;
+      });
+    };
+    container.register(LoanConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
+    container.register(LoanConstants.ILoanRepository,{useClass: LoanRepository});
+    const loanDatasource = container.resolve<ILoanRepository>(LoanConstants.ILoanRepository);
+    try {
+      await loanDatasource.create(loanEntity);
     } catch (error) {
       expect(error).toThrowError();
     }

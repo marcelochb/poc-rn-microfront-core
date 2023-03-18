@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { LoanEntity } from "../entities";
 
 interface IProps {

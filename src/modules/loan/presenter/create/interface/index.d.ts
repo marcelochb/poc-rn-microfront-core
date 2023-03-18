@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { IControllerFormData, IControllerFormDataReturn } from "@poc/interfaces";
 import { LoanEntity } from "../../../domain";
 

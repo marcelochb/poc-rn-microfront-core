@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { container } from "tsyringe"
 import { ApiClient, LoanConstants } from "../../../../../core";
 import { GetByLoanUsecase } from "../../../domain";

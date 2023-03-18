@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { LoanModel } from "../models";
 
 interface IProps {
