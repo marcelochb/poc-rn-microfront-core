@@ -11,4 +11,4 @@ type ILoanDetailNavigationParams ={
 
 type ILoanDetailNavigationRoute = RouteProp<ILoanDetailNavigationParams, 'params'>;
 
-export function useLoanDetailController(): IControllerGetData<LoanEntity>;
+export const useLoanDetailController: IControllerGetData<LoanEntity>;

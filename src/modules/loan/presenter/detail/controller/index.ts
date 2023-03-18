@@ -1,6 +1,6 @@
 import { IControllerGetData } from "@poc/interfaces";
 import { useRoute } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import React from "react";
 import { container } from "tsyringe";
 import { LoanConstants } from "../../../../../core";
 import { IGetByLoanUsecase, LoanEntity } from "../../../domain";
@@ -9,12 +9,12 @@ import { ILoanDetailNavigationRoute } from "../interface";
 
 loanDetailDependences();
 export const useLoanDetailController:IControllerGetData<LoanEntity> = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [loan, setLoan] = useState<LoanEntity>({} as LoanEntity);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(false);
+  const [loan, setLoan] = React.useState<LoanEntity>({} as LoanEntity);
   const useCase = container.resolve<IGetByLoanUsecase>(LoanConstants.GetByLoanUsecase);
   const route = useRoute<ILoanDetailNavigationRoute>();
-  useEffect(
+  React.useEffect(
     () => {
       const loadData = async () => {
         try {
