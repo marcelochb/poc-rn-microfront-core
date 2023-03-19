@@ -4,7 +4,7 @@ import { LoanConstants } from "../../../../../core";
 import { IGetListLoanUsecase, LoanEntity } from "../../../domain";
 import { loanListDependences } from "../bind";
 import { IControllerGetData } from "@poc/interfaces";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 
 loanListDependences();
 export const useLoanListController:IControllerGetData<LoanEntity[]> = () => {
@@ -12,11 +12,9 @@ export const useLoanListController:IControllerGetData<LoanEntity[]> = () => {
   const [error, setError] = useState(false);
   const [loans, setLoans] = useState<LoanEntity[]>([]);
   const useCase = container.resolve<IGetListLoanUsecase>(LoanConstants.GetListLoanUsecase);
-
-  useFocusEffect(
-    useCallback(() => {
-      let isActive = true;
-  
+  const isFocused = useIsFocused();
+  useEffect(
+    () => {
       const fetchUser = async () => {
         try {
           const response = await useCase.call();
@@ -27,14 +25,11 @@ export const useLoanListController:IControllerGetData<LoanEntity[]> = () => {
           setError(true);
         }
       };
-  
-      if (isActive) fetchUser();
-  
+      if (isFocused) fetchUser();
       return () => {
-        isActive = false;
         setLoading(true);
       };
-    }, [])
+    }, [isFocused]
   );
   
   return {loading, error, data:loans}
