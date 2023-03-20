@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { container } from 'tsyringe';
 import { LoanConstants } from '../../../../../src/core';
 import { ILoanRepository, LoanEntity } from '../../../../../src/modules/loan/domain';
-import { getByMock, getListMock, loanEntity, loanEntityList, loanModel, loanModelList } from '../../../../../src/modules/loan/external/mocks';
+import { loanEntity, loanEntityList, loanModel, loanModelList } from '../../../../../src/modules/loan/external/mocks';
 import { LoanRepository } from '../../../../../src/modules/loan/infra';
 interface IProps {
   id: string;

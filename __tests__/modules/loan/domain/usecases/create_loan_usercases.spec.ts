@@ -2,8 +2,8 @@ import 'reflect-metadata';
 import { container } from 'tsyringe';
 import { LoanConstants } from '../../../../../src/core';
 import { LoanEntity } from '../../../../../src/modules';
-import { CreateLoanUsecase, GetListLoanUsecase, ICreateLoanUsecase, IGetListLoanUsecase } from '../../../../../src/modules/loan/domain';
-const loanEntity = new LoanEntity({id: '1',name: 'teste', amount: 'R$ 10', type: 'tipo'});
+import { CreateLoanUsecase, ICreateLoanUsecase } from '../../../../../src/modules/loan/domain';
+import { loanEntity } from '../../../../../src/modules/loan/external/mocks';
 describe('Loan Create Usecase =>', () => {
   it("When get success request should return LoanEntities' array", async () => {
     class LoanMockRepository {

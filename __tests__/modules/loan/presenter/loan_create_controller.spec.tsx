@@ -1,22 +1,16 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
 import { LoanConstants } from '../../../../src/core';
-import { loanEntity } from '../../../../src/modules/loan/external/mocks';
-import { useLoanCreateController, useLoanDetailController } from '../../../../src/modules';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { useLoanCreateController } from '../../../../src/modules';
+import { Text, TouchableOpacity } from 'react-native';
 import { fireEvent, render, screen, waitForElementToBeRemoved } from '@testing-library/react-native';
 import React from 'react';
-
-
-
 
 jest.mock("@react-navigation/native", () => ({
   ...jest.requireActual("@react-navigation/native"),
   useRoute: jest.fn().mockImplementation(() => {return {params: {id:'1'}}} ),
 }));
-interface IProps {
-  id: string;
-}
+
 describe('Loan Create Controller =>',() => {
   it('When success submit request should not return Error', async () => {
     class CreateLoanMockUsecase {

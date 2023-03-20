@@ -3,19 +3,19 @@ import { container } from 'tsyringe';
 import { LoanConstants } from '../../../../../src/core';
 import { LoanEntity } from '../../../../../src/modules';
 import { GetListLoanUsecase, IGetListLoanUsecase } from '../../../../../src/modules/loan/domain';
-const loanEntities = [new LoanEntity({id: '1',name: 'teste', amount: 'R$ 10', type: 'tipo'})]
+import { loanEntityList } from '../../../../../src/modules/loan/external/mocks';
 describe('Loan GetList Usecase =>', () => {
   it("When get success request should return LoanEntities' array", async () => {
     class LoanMockRepository {
       getList = jest.fn().mockImplementation(() => {
-        return loanEntities;
+        return loanEntityList;
       });
     };
     container.register(LoanConstants.ILoanRepository,{useValue: new LoanMockRepository()});
     container.register(LoanConstants.GetListLoanUsecase,{useClass: GetListLoanUsecase});
     const useCase = container.resolve<IGetListLoanUsecase>(LoanConstants.GetListLoanUsecase);
     const response = await useCase.call();
-    expect(response).toEqual(loanEntities);
+    expect(response).toEqual(loanEntityList);
   });
   it("When get fail request should return Error", async () => {
     class LoanMockRepository {

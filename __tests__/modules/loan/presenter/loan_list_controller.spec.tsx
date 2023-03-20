@@ -82,7 +82,6 @@ describe('Loan List Controller =>',() => {
     render(
         <MyComponent />
     )
-    // await waitForElementToBeRemoved(() => screen.getByText('loading'));
     expect(screen.toJSON()).toMatchSnapshot();        
   })
 })

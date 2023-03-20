@@ -1,9 +1,8 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
 import { LoanConstants } from '../../../../../src/core';
-import { LoanEntity } from '../../../../../src/modules';
-import { GetByLoanUsecase, GetListLoanUsecase, IGetByLoanUsecase, IGetListLoanUsecase } from '../../../../../src/modules/loan/domain';
-const loanEntity = new LoanEntity({id: '1',name: 'teste', amount: 'R$ 10', type: 'tipo'});
+import { GetByLoanUsecase, IGetByLoanUsecase } from '../../../../../src/modules/loan/domain';
+import { loanEntity } from '../../../../../src/modules/loan/external/mocks';
 interface IProps {
   id: string;
 }
