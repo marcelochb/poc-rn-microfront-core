@@ -5,6 +5,7 @@ import { loanEntity } from '../../../../src/modules/loan/external/mocks';
 import { useLoanDetailController } from '../../../../src/modules';
 import { Text, View } from 'react-native';
 import { render, screen, waitForElementToBeRemoved } from '@testing-library/react-native';
+import React from 'react';
 
 
 

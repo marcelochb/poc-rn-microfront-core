@@ -15,6 +15,7 @@ export const useLoanListController:IControllerGetData<LoanEntity[]> = () => {
   const isFocused = useIsFocused();
   useEffect(
     () => {
+      setLoading(true);
       const fetchUser = async () => {
         try {
           const response = await useCase.call();
@@ -26,9 +27,7 @@ export const useLoanListController:IControllerGetData<LoanEntity[]> = () => {
         }
       };
       if (isFocused) fetchUser();
-      return () => {
-        setLoading(true);
-      };
+      else setLoading(false);
     }, [isFocused]
   );
   

@@ -1,40 +1,22 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
+import React from 'react';
 import { LoanConstants } from '../../../../src/core';
-import { renderHook } from "@testing-library/react-hooks";
-import { loanEntity, loanEntityList } from '../../../../src/modules/loan/external/mocks';
-import { LoanEntity, useLoanListController,useLoanDetailController } from '../../../../src/modules';
-import { NavigationContainer, NavigationContext, NavigationProp, ParamListBase } from "@react-navigation/native"
-import { Text, View } from 'react-native';
-import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react-native';
-import { MockedNavigator } from '../../../mock_navigator';
-// import { createStackNavigator } from '@react-navigation/stack';
+import { loanEntityList } from '../../../../src/modules/loan/external/mocks';
+import { useLoanListController } from '../../../../src/modules';
+import { Text } from 'react-native';
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react-native';
+const reactNavigation = require('@react-navigation/native');
 
-// const Stack = createStackNavigator();
-// const MockedNavigator: React.FC<{component: () => JSX.Element}> = ({component}) => {
-//   return (
-//     <NavigationContainer>
-//       <Stack.Navigator>
-//         <Stack.Screen
-//           name="MockedScreen"
-//           component={component}
-//           // initialParams={params}
-//         />
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// };
-
-
-
-// jest.mock("@react-navigation/native", () => ({
-//   ...jest.requireActual("@react-navigation/native"),
-//   useRoute: jest.fn().mockImplementation(() => {return {params: {id:'1'}}} ),
-// }));
-interface IProps {
-  id: string;
-}
+jest.mock("@react-navigation/native", () => ({
+  ...jest.requireActual("@react-navigation/native"),
+  useRoute: jest.fn().mockImplementation(() => {return {params: {id:'1'}}} ),
+  useIsFocused: jest.fn().mockImplementation(() => true ),
+}));
 describe('Loan List Controller =>',() => {
+  beforeEach(() => {
+    jest.resetModules();
+  });
   it('When success request should retun IContrllerData<LoanEntity[]>', async () => {
     class GetListLoanMockUsecase {
       call = jest.fn().mockImplementation( async () => Promise.resolve(loanEntityList));
@@ -48,34 +30,59 @@ describe('Loan List Controller =>',() => {
         );
     }
     render(
-        <MockedNavigator component={MyComponent}/>
+        <MyComponent />
     )
     await waitForElementToBeRemoved(() => screen.getByText('loading'));
     expect(screen.toJSON()).toMatchSnapshot();        
     
   })
-  // it('When fail request should retun erro=true', async () => {
-  //   class GetByLoanMockUsecase {
-  //     call = jest.fn().mockRejectedValue(async({id}:IProps) =>{throw Error});
-  //   }
-  //   container.register(LoanConstants.GetByLoanUsecase,{useValue: new GetByLoanMockUsecase()});
+  it('When fail request should retun erro=true', async () => {
+    class GetListLoanMockUsecase {
+      call = jest.fn().mockRejectedValue(async() =>{throw Error});
+    }
+    container.register(LoanConstants.GetListLoanUsecase,{useValue: new GetListLoanMockUsecase()});
 
-  //   const MyComponent = () => {
-  //     const {error,loading} = useLoanDetailController();
-  //     return (
-  //       <Text>{loading 
-  //                   ? 'loading' 
-  //                   : error ? 
-  //                       'comunication fail'
-  //                       : 'sucesso'
-  //             }
-  //       </Text>
-  //     );
-  //   }
-  //   render(
-  //       <MyComponent />
-  //   )
-  //   await waitForElementToBeRemoved(() => screen.getByText('loading'));
-  //   expect(screen.toJSON()).toMatchSnapshot();        
-  // })
+    const MyComponent = () => {
+      const {error,loading} = useLoanListController();
+      return (
+        <Text>{loading 
+                    ? 'loading' 
+                    : error ? 
+                        'comunication fail'
+                        : 'sucesso'
+              }
+        </Text>
+      );
+    }
+    render(
+        <MyComponent />
+    )
+    await waitForElementToBeRemoved(() => screen.getByText('loading'));
+    expect(screen.toJSON()).toMatchSnapshot();        
+  })
+  it('When screen is not in focus state shoud return empty list', async () => {
+    reactNavigation.useIsFocused.mockImplementation(() => false);
+    class GetListLoanMockUsecase {
+      call = jest.fn().mockImplementation( async () => Promise.resolve(loanEntityList));
+    }
+    container.register(LoanConstants.GetListLoanUsecase,{useValue: new GetListLoanMockUsecase()});
+
+    const MyComponent = () => {
+      const {data,loading} = useLoanListController();
+      return (
+        <Text>{loading 
+                    ? 'loading' 
+                    : data.length == 0 ? 
+                        'empty list'
+                        : data[0].name
+              }
+        </Text>
+      );
+    }
+    render(
+        <MyComponent />
+    )
+    // await waitForElementToBeRemoved(() => screen.getByText('loading'));
+    expect(screen.toJSON()).toMatchSnapshot();        
+  })
 })

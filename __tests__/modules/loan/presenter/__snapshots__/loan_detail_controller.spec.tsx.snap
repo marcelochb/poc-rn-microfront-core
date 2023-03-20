@@ -11,9 +11,3 @@ exports[`Loan Deail Controller => When success request should retun IContrllerDa
   teste
 </Text>
 `;
-
-exports[`Loan Deail Controller => When success request should retun IContrllerData<T> 1`] = `
-<Text>
-  teste
-</Text>
-`;
