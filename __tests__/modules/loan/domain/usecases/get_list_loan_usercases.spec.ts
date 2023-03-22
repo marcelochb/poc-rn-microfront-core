@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
 import { LoanConstants } from '../../../../../src/core';
-import { LoanEntity } from '../../../../../src/modules';
 import { GetListLoanUsecase, IGetListLoanUsecase } from '../../../../../src/modules/loan/domain';
 import { loanEntityList } from '../../../../../src/modules/loan/external/mocks';
 describe('Loan GetList Usecase =>', () => {
