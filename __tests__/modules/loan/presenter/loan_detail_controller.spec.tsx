@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
-import { LoanConstants } from '../../../../src/core';
+import { CoreConstants } from '../../../../src/core';
 import { loanEntity } from '../../../../src/modules/loan/external/mocks';
 import { useLoanDetailController } from '../../../../src/modules';
 import { Text } from 'react-native';
@@ -21,7 +21,7 @@ describe('Loan Deail Controller =>',() => {
     class GetByLoanMockUsecase {
       call = jest.fn().mockImplementation( async ({id}:IProps) => Promise.resolve(loanEntity));
     }
-    container.register(LoanConstants.GetByLoanUsecase,{useValue: new GetByLoanMockUsecase()});
+    container.register(CoreConstants.GetByLoanUsecase,{useValue: new GetByLoanMockUsecase()});
 
     const MyComponent = () => {
       const {data, loading} = useLoanDetailController();
@@ -40,7 +40,7 @@ describe('Loan Deail Controller =>',() => {
     class GetByLoanMockUsecase {
       call = jest.fn().mockRejectedValue(async({id}:IProps) =>{throw Error});
     }
-    container.register(LoanConstants.GetByLoanUsecase,{useValue: new GetByLoanMockUsecase()});
+    container.register(CoreConstants.GetByLoanUsecase,{useValue: new GetByLoanMockUsecase()});
 
     const MyComponent = () => {
       const {error,loading} = useLoanDetailController();

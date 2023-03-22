@@ -1,7 +1,7 @@
 import { PaymentEntity } from "../entities";
 import { inject, injectable } from "tsyringe";
 import { IPaymentRepository } from "../repositories";
-import { PaymentConstants } from "../../../../core";
+import { CoreConstants } from "../../../../core";
 interface IProps {
   id: string;
 }
@@ -13,7 +13,7 @@ export interface IGetByPaymentUsecase {
 export class GetByPaymentUsecase implements IGetByPaymentUsecase {
 
   constructor(
-    @inject(PaymentConstants.IPaymentRepository)
+    @inject(CoreConstants.IPaymentRepository)
     private readonly repository: IPaymentRepository
   ) {}
 

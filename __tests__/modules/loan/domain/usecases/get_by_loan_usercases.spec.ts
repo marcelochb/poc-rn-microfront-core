@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
-import { LoanConstants } from '../../../../../src/core';
+import { CoreConstants } from '../../../../../src/core';
 import { GetByLoanUsecase, IGetByLoanUsecase } from '../../../../../src/modules/loan/domain';
 import { loanEntity } from '../../../../../src/modules/loan/external/mocks';
 interface IProps {
@@ -13,9 +13,9 @@ describe('Loan GetBy Usecase =>', () => {
         return loanEntity;
       });
     };
-    container.register(LoanConstants.ILoanRepository,{useValue: new LoanMockRepository()});
-    container.register(LoanConstants.GetByLoanUsecase,{useClass: GetByLoanUsecase});
-    const useCase = container.resolve<IGetByLoanUsecase>(LoanConstants.GetByLoanUsecase);
+    container.register(CoreConstants.ILoanRepository,{useValue: new LoanMockRepository()});
+    container.register(CoreConstants.GetByLoanUsecase,{useClass: GetByLoanUsecase});
+    const useCase = container.resolve<IGetByLoanUsecase>(CoreConstants.GetByLoanUsecase);
     const response = await useCase.call({id:'1'});
     expect(response).toEqual(loanEntity);
   });
@@ -25,9 +25,9 @@ describe('Loan GetBy Usecase =>', () => {
         throw Error;
       });
     };
-    container.register(LoanConstants.ILoanRepository,{useValue: new LoanMockRepository()});
-    container.register(LoanConstants.GetByLoanUsecase,{useClass: GetByLoanUsecase});
-    const useCase = container.resolve<IGetByLoanUsecase>(LoanConstants.GetByLoanUsecase);
+    container.register(CoreConstants.ILoanRepository,{useValue: new LoanMockRepository()});
+    container.register(CoreConstants.GetByLoanUsecase,{useClass: GetByLoanUsecase});
+    const useCase = container.resolve<IGetByLoanUsecase>(CoreConstants.GetByLoanUsecase);
     try {
       await useCase.call({id:'1'});
     } catch (error) {

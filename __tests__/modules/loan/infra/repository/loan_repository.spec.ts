@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
-import { LoanConstants } from '../../../../../src/core';
+import { CoreConstants } from '../../../../../src/core';
 import { ILoanRepository, LoanEntity } from '../../../../../src/modules/loan/domain';
 import { loanEntity, loanEntityList, loanModel, loanModelList } from '../../../../../src/modules/loan/external/mocks';
 import { LoanRepository } from '../../../../../src/modules/loan/infra';
@@ -14,9 +14,9 @@ describe('Loan Repository |', () => {
         return loanModelList;
       });
     };
-    container.register(LoanConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
-    container.register(LoanConstants.ILoanRepository,{useClass: LoanRepository});
-    const loanRepository = container.resolve<ILoanRepository>(LoanConstants.ILoanRepository);
+    container.register(CoreConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
+    container.register(CoreConstants.ILoanRepository,{useClass: LoanRepository});
+    const loanRepository = container.resolve<ILoanRepository>(CoreConstants.ILoanRepository);
     const response = await loanRepository.getList();
     expect(response).toEqual(loanEntityList);
   });
@@ -26,9 +26,9 @@ describe('Loan Repository |', () => {
         throw Error;
       });
     };
-    container.register(LoanConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
-    container.register(LoanConstants.ILoanRepository,{useClass: LoanRepository});
-    const loanRepository = container.resolve<ILoanRepository>(LoanConstants.ILoanRepository);
+    container.register(CoreConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
+    container.register(CoreConstants.ILoanRepository,{useClass: LoanRepository});
+    const loanRepository = container.resolve<ILoanRepository>(CoreConstants.ILoanRepository);
     try {
       await loanRepository.getList();
     } catch (error) {
@@ -41,9 +41,9 @@ describe('Loan Repository |', () => {
         return loanModel;
       });
     };
-    container.register(LoanConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
-    container.register(LoanConstants.ILoanRepository,{useClass: LoanRepository});
-    const loanDatasource = container.resolve<ILoanRepository>(LoanConstants.ILoanRepository);
+    container.register(CoreConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
+    container.register(CoreConstants.ILoanRepository,{useClass: LoanRepository});
+    const loanDatasource = container.resolve<ILoanRepository>(CoreConstants.ILoanRepository);
     const response = await loanDatasource.getBy({id:'1'});
     expect(response).toEqual(loanEntity);
   });
@@ -53,9 +53,9 @@ describe('Loan Repository |', () => {
         throw Error;
       });
     };
-    container.register(LoanConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
-    container.register(LoanConstants.ILoanRepository,{useClass: LoanRepository});
-    const loanDatasource = container.resolve<ILoanRepository>(LoanConstants.ILoanRepository);
+    container.register(CoreConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
+    container.register(CoreConstants.ILoanRepository,{useClass: LoanRepository});
+    const loanDatasource = container.resolve<ILoanRepository>(CoreConstants.ILoanRepository);
     try {
       await loanDatasource.getBy({id:'1'});
     } catch (error) {
@@ -66,9 +66,9 @@ describe('Loan Repository |', () => {
     class LoanMockDatasource {
       create = jest.fn().mockImplementation((loan:LoanEntity) => null);
     };
-    container.register(LoanConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
-    container.register(LoanConstants.ILoanRepository,{useClass: LoanRepository});
-    const loanDatasource = container.resolve<ILoanRepository>(LoanConstants.ILoanRepository);
+    container.register(CoreConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
+    container.register(CoreConstants.ILoanRepository,{useClass: LoanRepository});
+    const loanDatasource = container.resolve<ILoanRepository>(CoreConstants.ILoanRepository);
     try {
       await loanDatasource.create(loanEntity);
     } catch (error) {
@@ -81,9 +81,9 @@ describe('Loan Repository |', () => {
         throw Error;
       });
     };
-    container.register(LoanConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
-    container.register(LoanConstants.ILoanRepository,{useClass: LoanRepository});
-    const loanDatasource = container.resolve<ILoanRepository>(LoanConstants.ILoanRepository);
+    container.register(CoreConstants.ILoanDatasource,{useValue: new LoanMockDatasource()});
+    container.register(CoreConstants.ILoanRepository,{useClass: LoanRepository});
+    const loanDatasource = container.resolve<ILoanRepository>(CoreConstants.ILoanRepository);
     try {
       await loanDatasource.create(loanEntity);
     } catch (error) {

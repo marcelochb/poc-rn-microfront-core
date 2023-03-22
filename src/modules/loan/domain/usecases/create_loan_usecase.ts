@@ -1,7 +1,7 @@
 import { LoanEntity } from "../entities";
 import { inject, injectable } from "tsyringe";
 import { ILoanRepository } from "../repositories";
-import { LoanConstants } from "../../../../core";
+import { CoreConstants } from "../../../../core";
 
 export interface ICreateLoanUsecase {
   call(loan:LoanEntity):Promise<void>;
@@ -11,7 +11,7 @@ export interface ICreateLoanUsecase {
 export class CreateLoanUsecase implements ICreateLoanUsecase {
 
   constructor(
-    @inject(LoanConstants.ILoanRepository)
+    @inject(CoreConstants.ILoanRepository)
     private readonly repository: ILoanRepository
   ) {}
 

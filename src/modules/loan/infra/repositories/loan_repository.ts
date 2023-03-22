@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { LoanConstants } from "../../../../core/constants";
+import { CoreConstants } from "../../../../core/constants";
 import { ILoanRepository, LoanEntity } from "../../domain";
 import { ILoanDatasource } from "../datasources";
 import { LoanModel } from "../models";
@@ -10,7 +10,7 @@ interface IProps {
 @injectable()
 export class LoanRepository implements ILoanRepository {
   constructor(
-    @inject(LoanConstants.ILoanDatasource)
+    @inject(CoreConstants.ILoanDatasource)
     private readonly datasource: ILoanDatasource
   ) {}
 

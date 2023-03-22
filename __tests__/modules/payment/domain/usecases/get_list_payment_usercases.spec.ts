@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
-import { PaymentConstants } from '../../../../../src/core';
+import { CoreConstants } from '../../../../../src/core';
 import { GetListPaymentUsecase, IGetListPaymentUsecase } from '../../../../../src/modules/payment/domain';
 import { paymentEntityList } from '../../../../../src/modules/payment/external/mocks';
 describe('Payment GetList Usecase =>', () => {
@@ -10,9 +10,9 @@ describe('Payment GetList Usecase =>', () => {
         return paymentEntityList;
       });
     };
-    container.register(PaymentConstants.IPaymentRepository,{useValue: new PaymentMockRepository()});
-    container.register(PaymentConstants.GetListPaymentUsecase,{useClass: GetListPaymentUsecase});
-    const useCase = container.resolve<IGetListPaymentUsecase>(PaymentConstants.GetListPaymentUsecase);
+    container.register(CoreConstants.IPaymentRepository,{useValue: new PaymentMockRepository()});
+    container.register(CoreConstants.GetListPaymentUsecase,{useClass: GetListPaymentUsecase});
+    const useCase = container.resolve<IGetListPaymentUsecase>(CoreConstants.GetListPaymentUsecase);
     const response = await useCase.call();
     expect(response).toEqual(paymentEntityList);
   });
@@ -22,9 +22,9 @@ describe('Payment GetList Usecase =>', () => {
         throw Error;
       });
     };
-    container.register(PaymentConstants.IPaymentRepository,{useValue: new PaymentMockRepository()});
-    container.register(PaymentConstants.GetListPaymentUsecase,{useClass: GetListPaymentUsecase});
-    const useCase = container.resolve<IGetListPaymentUsecase>(PaymentConstants.GetListPaymentUsecase);
+    container.register(CoreConstants.IPaymentRepository,{useValue: new PaymentMockRepository()});
+    container.register(CoreConstants.GetListPaymentUsecase,{useClass: GetListPaymentUsecase});
+    const useCase = container.resolve<IGetListPaymentUsecase>(CoreConstants.GetListPaymentUsecase);
     try {
       await useCase.call();
     } catch (error) {

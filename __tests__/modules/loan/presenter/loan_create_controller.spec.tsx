@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
-import { LoanConstants } from '../../../../src/core';
+import { CoreConstants } from '../../../../src/core';
 import { useLoanCreateController } from '../../../../src/modules';
 import { Text, TouchableOpacity } from 'react-native';
 import { fireEvent, render, screen, waitForElementToBeRemoved } from '@testing-library/react-native';
@@ -16,7 +16,7 @@ describe('Loan Create Controller =>',() => {
     class CreateLoanMockUsecase {
       call = jest.fn().mockImplementation( async () => null);
     }
-    container.register(LoanConstants.CreateLoanUsecase,{useValue: new CreateLoanMockUsecase()});
+    container.register(CoreConstants.CreateLoanUsecase,{useValue: new CreateLoanMockUsecase()});
 
     const MyComponent = () => {
       const {onSubmit, loading} = useLoanCreateController();
@@ -40,7 +40,7 @@ describe('Loan Create Controller =>',() => {
     class CreateLoanMockUsecase {
       call = jest.fn().mockImplementation( async () => {throw Error});
     }
-    container.register(LoanConstants.CreateLoanUsecase,{useValue: new CreateLoanMockUsecase()});
+    container.register(CoreConstants.CreateLoanUsecase,{useValue: new CreateLoanMockUsecase()});
 
     const MyComponent = () => {
       const {onSubmit, loading, error} = useLoanCreateController();

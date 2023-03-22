@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { PaymentConstants } from "../../../../core/constants";
+import { CoreConstants } from "../../../../core/constants";
 import { IPaymentRepository, PaymentEntity } from "../../domain";
 import { IPaymentDatasource } from "../datasources";
 import { PaymentModel } from "../models";
@@ -10,7 +10,7 @@ interface IProps {
 @injectable()
 export class PaymentRepository implements IPaymentRepository {
   constructor(
-    @inject(PaymentConstants.IPaymentDatasource)
+    @inject(CoreConstants.IPaymentDatasource)
     private readonly datasource: IPaymentDatasource
   ) {}
 

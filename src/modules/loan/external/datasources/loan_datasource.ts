@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { inject, injectable } from "tsyringe";
-import { IApiClient, LoanConstants } from "../../../../core";
+import { IApiClient, CoreConstants } from "../../../../core";
 import { ILoanDatasource, LoanModel } from "../../infra";
 
 interface IProps {
@@ -9,7 +9,7 @@ interface IProps {
 @injectable()
 export class LoanDatasource implements ILoanDatasource {
   constructor(
-    @inject(LoanConstants.IApiClient)
+    @inject(CoreConstants.IApiClient)
     private readonly apiClient: IApiClient
   ) {}
   async create(loan: LoanModel): Promise<void> {

@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { ILoanDatasource, LoanModel } from '../../../../src/modules/loan/infra';
 import { container } from 'tsyringe';
-import { LoanConstants } from '../../../../src/core';
+import { CoreConstants } from '../../../../src/core';
 import { LoanDatasource } from '../../../../src/modules/loan/external';
 import { getListMock, loanModelList, getByMock, loanModel, loanEntity } from '../../../../src/modules/loan/external/mocks';
 
@@ -12,9 +12,9 @@ describe('Loan Datasources |', () => {
         return getListMock;
       });
     };
-    container.register(LoanConstants.IApiClient,{useValue: new ApiMockClient()});
-    container.register(LoanConstants.ILoanDatasource,{useClass: LoanDatasource});
-    const loanDatasource = container.resolve<ILoanDatasource>(LoanConstants.ILoanDatasource);
+    container.register(CoreConstants.IApiClient,{useValue: new ApiMockClient()});
+    container.register(CoreConstants.ILoanDatasource,{useClass: LoanDatasource});
+    const loanDatasource = container.resolve<ILoanDatasource>(CoreConstants.ILoanDatasource);
     const response = await loanDatasource.getList();
     expect(response).toEqual(loanModelList);
   });
@@ -24,9 +24,9 @@ describe('Loan Datasources |', () => {
         throw Error;
       });
     };
-    container.register(LoanConstants.IApiClient,{useValue: new ApiMockClient()});
-    container.register(LoanConstants.ILoanDatasource,{useClass: LoanDatasource});
-    const loanDatasource = container.resolve<ILoanDatasource>(LoanConstants.ILoanDatasource);
+    container.register(CoreConstants.IApiClient,{useValue: new ApiMockClient()});
+    container.register(CoreConstants.ILoanDatasource,{useClass: LoanDatasource});
+    const loanDatasource = container.resolve<ILoanDatasource>(CoreConstants.ILoanDatasource);
     try {
       await loanDatasource.getList();
     } catch (error) {
@@ -39,9 +39,9 @@ describe('Loan Datasources |', () => {
         return getByMock;
       });
     };
-    container.register(LoanConstants.IApiClient,{useValue: new ApiMockClient()});
-    container.register(LoanConstants.ILoanDatasource,{useClass: LoanDatasource});
-    const loanDatasource = container.resolve<ILoanDatasource>(LoanConstants.ILoanDatasource);
+    container.register(CoreConstants.IApiClient,{useValue: new ApiMockClient()});
+    container.register(CoreConstants.ILoanDatasource,{useClass: LoanDatasource});
+    const loanDatasource = container.resolve<ILoanDatasource>(CoreConstants.ILoanDatasource);
     const response = await loanDatasource.getBy({id:'1'});
     expect(response).toEqual(loanModel);
   });
@@ -51,9 +51,9 @@ describe('Loan Datasources |', () => {
         throw Error;
       });
     };
-    container.register(LoanConstants.IApiClient,{useValue: new ApiMockClient()});
-    container.register(LoanConstants.ILoanDatasource,{useClass: LoanDatasource});
-    const loanDatasource = container.resolve<ILoanDatasource>(LoanConstants.ILoanDatasource);
+    container.register(CoreConstants.IApiClient,{useValue: new ApiMockClient()});
+    container.register(CoreConstants.ILoanDatasource,{useClass: LoanDatasource});
+    const loanDatasource = container.resolve<ILoanDatasource>(CoreConstants.ILoanDatasource);
     try {
       await loanDatasource.getBy({id:'1'});
     } catch (error) {
@@ -64,9 +64,9 @@ describe('Loan Datasources |', () => {
     class ApiMockClient {
       post = jest.fn().mockImplementation(() => null);
     };
-    container.register(LoanConstants.IApiClient,{useValue: new ApiMockClient()});
-    container.register(LoanConstants.ILoanDatasource,{useClass: LoanDatasource});
-    const loanDatasource = container.resolve<ILoanDatasource>(LoanConstants.ILoanDatasource);
+    container.register(CoreConstants.IApiClient,{useValue: new ApiMockClient()});
+    container.register(CoreConstants.ILoanDatasource,{useClass: LoanDatasource});
+    const loanDatasource = container.resolve<ILoanDatasource>(CoreConstants.ILoanDatasource);
     try {
       await loanDatasource.create(loanEntity);
     } catch (error) {
@@ -79,9 +79,9 @@ describe('Loan Datasources |', () => {
         throw Error;
       });
     };
-    container.register(LoanConstants.IApiClient,{useValue: new ApiMockClient()});
-    container.register(LoanConstants.ILoanDatasource,{useClass: LoanDatasource});
-    const loanDatasource = container.resolve<ILoanDatasource>(LoanConstants.ILoanDatasource);
+    container.register(CoreConstants.IApiClient,{useValue: new ApiMockClient()});
+    container.register(CoreConstants.ILoanDatasource,{useClass: LoanDatasource});
+    const loanDatasource = container.resolve<ILoanDatasource>(CoreConstants.ILoanDatasource);
     try {
       await loanDatasource.create(loanEntity);
     } catch (error) {

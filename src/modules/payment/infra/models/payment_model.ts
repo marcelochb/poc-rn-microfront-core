@@ -47,14 +47,4 @@ export class PaymentModel extends PaymentEntity {
       amount: `R$ ${Number.parseFloat(body.amount).toLocaleString("pt-BR")}`
     });
   }
-
-  static fromEntity(payment: PaymentModel): PaymentEntity {
-    return new PaymentEntity({
-      id: payment.id,
-      recipient: payment.recipient,
-      payer: payment.payer,
-      dueDate: payment.dueDate,
-      amount: payment.amount
-    });
-  }
 }

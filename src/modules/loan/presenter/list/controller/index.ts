@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import { container } from "tsyringe";
-import { LoanConstants } from "../../../../../core";
+import { CoreConstants } from "../../../../../core";
 import { IGetListLoanUsecase, LoanEntity } from "../../../domain";
 import { loanListDependences } from "../bind";
 import { IControllerGetData } from "@poc/interfaces";
@@ -11,7 +11,7 @@ export const useLoanListController:IControllerGetData<LoanEntity[]> = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [loans, setLoans] = useState<LoanEntity[]>([]);
-  const useCase = container.resolve<IGetListLoanUsecase>(LoanConstants.GetListLoanUsecase);
+  const useCase = container.resolve<IGetListLoanUsecase>(CoreConstants.GetListLoanUsecase);
   const isFocused = useIsFocused();
   useEffect(
     () => {

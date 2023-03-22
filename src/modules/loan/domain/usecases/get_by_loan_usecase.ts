@@ -1,7 +1,7 @@
 import { LoanEntity } from "../entities";
 import { inject, injectable } from "tsyringe";
 import { ILoanRepository } from "../repositories";
-import { LoanConstants } from "../../../../core";
+import { CoreConstants } from "../../../../core";
 interface IProps {
   id: string;
 }
@@ -13,7 +13,7 @@ export interface IGetByLoanUsecase {
 export class GetByLoanUsecase implements IGetByLoanUsecase {
 
   constructor(
-    @inject(LoanConstants.ILoanRepository)
+    @inject(CoreConstants.ILoanRepository)
     private readonly repository: ILoanRepository
   ) {}
 

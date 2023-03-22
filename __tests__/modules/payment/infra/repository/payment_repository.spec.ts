@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
-import { PaymentConstants } from '../../../../../src/core';
+import { CoreConstants } from '../../../../../src/core';
 import { ILoanRepository, LoanEntity } from '../../../../../src/modules/loan/domain';
 import { loanEntity, loanEntityList, loanModel, loanModelList } from '../../../../../src/modules/loan/external/mocks';
 import { LoanRepository } from '../../../../../src/modules/loan/infra';
@@ -17,9 +17,9 @@ describe('Payment Repository |', () => {
         return paymentModelList;
       });
     };
-    container.register(PaymentConstants.IPaymentDatasource,{useValue: new PaymentMockDatasource()});
-    container.register(PaymentConstants.IPaymentRepository,{useClass: PaymentRepository});
-    const paymentRepository = container.resolve<IPaymentRepository>(PaymentConstants.IPaymentRepository);
+    container.register(CoreConstants.IPaymentDatasource,{useValue: new PaymentMockDatasource()});
+    container.register(CoreConstants.IPaymentRepository,{useClass: PaymentRepository});
+    const paymentRepository = container.resolve<IPaymentRepository>(CoreConstants.IPaymentRepository);
     const response = await paymentRepository.getList();
     expect(response).toEqual(paymentEntityList);
   });
@@ -29,9 +29,9 @@ describe('Payment Repository |', () => {
         throw Error;
       });
     };
-    container.register(PaymentConstants.IPaymentDatasource,{useValue: new PaymentMockDatasource()});
-    container.register(PaymentConstants.IPaymentRepository,{useClass: PaymentRepository});
-    const paymentRepository = container.resolve<IPaymentRepository>(PaymentConstants.IPaymentRepository);
+    container.register(CoreConstants.IPaymentDatasource,{useValue: new PaymentMockDatasource()});
+    container.register(CoreConstants.IPaymentRepository,{useClass: PaymentRepository});
+    const paymentRepository = container.resolve<IPaymentRepository>(CoreConstants.IPaymentRepository);
     try {
       await paymentRepository.getList();
     } catch (error) {
@@ -44,9 +44,9 @@ describe('Payment Repository |', () => {
         return paymentModel;
       });
     };
-    container.register(PaymentConstants.IPaymentDatasource,{useValue: new PaymentMockDatasource()});
-    container.register(PaymentConstants.IPaymentRepository,{useClass: PaymentRepository});
-    const paymentDatasource = container.resolve<IPaymentRepository>(PaymentConstants.IPaymentRepository);
+    container.register(CoreConstants.IPaymentDatasource,{useValue: new PaymentMockDatasource()});
+    container.register(CoreConstants.IPaymentRepository,{useClass: PaymentRepository});
+    const paymentDatasource = container.resolve<IPaymentRepository>(CoreConstants.IPaymentRepository);
     const response = await paymentDatasource.getBy({id:'1'});
     expect(response).toEqual(paymentEntity);
   });
@@ -56,9 +56,9 @@ describe('Payment Repository |', () => {
         throw Error;
       });
     };
-    container.register(PaymentConstants.IPaymentDatasource,{useValue: new PaymentMockDatasource()});
-    container.register(PaymentConstants.IPaymentRepository,{useClass: PaymentRepository});
-    const paymentDatasource = container.resolve<IPaymentRepository>(PaymentConstants.IPaymentRepository);
+    container.register(CoreConstants.IPaymentDatasource,{useValue: new PaymentMockDatasource()});
+    container.register(CoreConstants.IPaymentRepository,{useClass: PaymentRepository});
+    const paymentDatasource = container.resolve<IPaymentRepository>(CoreConstants.IPaymentRepository);
     try {
       await paymentDatasource.getBy({id:'1'});
     } catch (error) {

@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
 import React from 'react';
-import { LoanConstants } from '../../../../src/core';
+import { CoreConstants } from '../../../../src/core';
 import { loanEntityList } from '../../../../src/modules/loan/external/mocks';
 import { useLoanListController } from '../../../../src/modules';
 import { Text } from 'react-native';
@@ -21,7 +21,7 @@ describe('Loan List Controller =>',() => {
     class GetListLoanMockUsecase {
       call = jest.fn().mockImplementation( async () => Promise.resolve(loanEntityList));
     }
-    container.register(LoanConstants.GetListLoanUsecase,{useValue: new GetListLoanMockUsecase()});
+    container.register(CoreConstants.GetListLoanUsecase,{useValue: new GetListLoanMockUsecase()});
 
     const MyComponent = () => {
       const {data, loading} = useLoanListController();
@@ -40,7 +40,7 @@ describe('Loan List Controller =>',() => {
     class GetListLoanMockUsecase {
       call = jest.fn().mockRejectedValue(async() =>{throw Error});
     }
-    container.register(LoanConstants.GetListLoanUsecase,{useValue: new GetListLoanMockUsecase()});
+    container.register(CoreConstants.GetListLoanUsecase,{useValue: new GetListLoanMockUsecase()});
 
     const MyComponent = () => {
       const {error,loading} = useLoanListController();
@@ -65,7 +65,7 @@ describe('Loan List Controller =>',() => {
     class GetListLoanMockUsecase {
       call = jest.fn().mockImplementation( async () => Promise.resolve(loanEntityList));
     }
-    container.register(LoanConstants.GetListLoanUsecase,{useValue: new GetListLoanMockUsecase()});
+    container.register(CoreConstants.GetListLoanUsecase,{useValue: new GetListLoanMockUsecase()});
 
     const MyComponent = () => {
       const {data,loading} = useLoanListController();

@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
-import { LoanConstants } from '../../../../../src/core';
+import { CoreConstants } from '../../../../../src/core';
 import { LoanEntity } from '../../../../../src/modules';
 import { CreateLoanUsecase, ICreateLoanUsecase } from '../../../../../src/modules/loan/domain';
 import { loanEntity } from '../../../../../src/modules/loan/external/mocks';
@@ -9,9 +9,9 @@ describe('Loan Create Usecase =>', () => {
     class LoanMockRepository {
       create = jest.fn().mockImplementation((loan:LoanEntity) => null);
     };
-    container.register(LoanConstants.ILoanRepository,{useValue: new LoanMockRepository()});
-    container.register(LoanConstants.CreateLoanUsecase,{useClass: CreateLoanUsecase});
-    const useCase = container.resolve<ICreateLoanUsecase>(LoanConstants.CreateLoanUsecase);
+    container.register(CoreConstants.ILoanRepository,{useValue: new LoanMockRepository()});
+    container.register(CoreConstants.CreateLoanUsecase,{useClass: CreateLoanUsecase});
+    const useCase = container.resolve<ICreateLoanUsecase>(CoreConstants.CreateLoanUsecase);
     try {
       await useCase.call(loanEntity);
     } catch (error) {
@@ -24,9 +24,9 @@ describe('Loan Create Usecase =>', () => {
         throw Error;
       });
     };
-    container.register(LoanConstants.ILoanRepository,{useValue: new LoanMockRepository()});
-    container.register(LoanConstants.CreateLoanUsecase,{useClass: CreateLoanUsecase});
-    const useCase = container.resolve<ICreateLoanUsecase>(LoanConstants.CreateLoanUsecase);
+    container.register(CoreConstants.ILoanRepository,{useValue: new LoanMockRepository()});
+    container.register(CoreConstants.CreateLoanUsecase,{useClass: CreateLoanUsecase});
+    const useCase = container.resolve<ICreateLoanUsecase>(CoreConstants.CreateLoanUsecase);
     try {
       await useCase.call(loanEntity);
     } catch (error) {

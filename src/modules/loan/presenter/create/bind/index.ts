@@ -1,13 +1,13 @@
 /* istanbul ignore file */
 import { container } from "tsyringe"
-import { ApiClient, LoanConstants } from "../../../../../core";
+import { ApiClient, CoreConstants } from "../../../../../core";
 import { CreateLoanUsecase } from "../../../domain";
 import { LoanDatasource } from "../../../external";
 import { LoanRepository } from "../../../infra";
 
 export const loanCreateDependences = () => {
-  container.register(LoanConstants.IApiClient,{useValue: new ApiClient()});
-  container.register(LoanConstants.ILoanDatasource,{useClass: LoanDatasource});
-  container.register(LoanConstants.ILoanRepository,{useClass: LoanRepository});
-  container.register(LoanConstants.CreateLoanUsecase,{useClass: CreateLoanUsecase});
+  container.register(CoreConstants.IApiClient,{useValue: new ApiClient()});
+  container.register(CoreConstants.ILoanDatasource,{useClass: LoanDatasource});
+  container.register(CoreConstants.ILoanRepository,{useClass: LoanRepository});
+  container.register(CoreConstants.CreateLoanUsecase,{useClass: CreateLoanUsecase});
 }
