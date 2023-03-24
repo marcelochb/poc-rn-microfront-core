@@ -1,9 +1,6 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
 import { CoreConstants } from '../../../../../src/core';
-import { ILoanRepository, LoanEntity } from '../../../../../src/modules/loan/domain';
-import { loanEntity, loanEntityList, loanModel, loanModelList } from '../../../../../src/modules/loan/external/mocks';
-import { LoanRepository } from '../../../../../src/modules/loan/infra';
 import { IPaymentRepository } from '../../../../../src/modules/payment/domain';
 import { paymentEntity, paymentEntityList, paymentModel, paymentModelList } from '../../../../../src/modules/payment/external/mocks';
 import { PaymentRepository } from '../../../../../src/modules/payment/infra/repositories/payment_repository';

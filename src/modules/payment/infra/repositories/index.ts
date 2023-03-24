@@ -1,2 +1,2 @@
 /* istanbul ignore file */
-export {PaymentRepository as LoanRepository} from './payment_repository';
+export {PaymentRepository} from './payment_repository';

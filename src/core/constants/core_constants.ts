@@ -10,5 +10,9 @@ export enum CoreConstants {
   IPaymentDatasource = 'IPaymentDatasource',
   GetListPaymentUsecase = 'GetListPaymentUsecase',
   GetByPaymentUsecase = 'GetByPaymentUsecase',
+  IPixRepository = 'IPixRepository',
+  IPixDatasource = 'IPixDatasource',
+  GetListPixUsecase = 'GetListPixUsecase',
+  GetByPixUsecase = 'GetByPixUsecase',
 
 }
