@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pix Deail Controller => When fail request should retun erro=true 1`] = `
+<Text>
+  comunication fail
+</Text>
+`;
+
+exports[`Pix Deail Controller => When success request should retun IContrllerData<PixEntity> 1`] = `
+<Text>
+  teste
+</Text>
+`;
