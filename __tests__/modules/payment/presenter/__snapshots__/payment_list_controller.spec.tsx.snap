@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Payment List Controller => When fail request should retun erro=true 1`] = `
+<Text>
+  comunication fail
+</Text>
+`;
+
+exports[`Payment List Controller => When screen is not in focus state shoud return empty list 1`] = `
+<Text>
+  empty list
+</Text>
+`;
+
+exports[`Payment List Controller => When success request should retun IContrllerData<PaymentEntity[]> 1`] = `
+<Text>
+  teste
+</Text>
+`;

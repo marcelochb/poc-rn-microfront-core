@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Payment Deail Controller => When fail request should retun erro=true 1`] = `
+<Text>
+  comunication fail
+</Text>
+`;
+
+exports[`Payment Deail Controller => When success request should retun IContrllerData<PaymentEntity> 1`] = `
+<Text>
+  teste
+</Text>
+`;
