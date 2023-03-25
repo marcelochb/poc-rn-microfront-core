@@ -1,13 +1,13 @@
 /* istanbul ignore file */
 import { container } from "tsyringe"
 import { ApiClient, CoreConstants } from "../../../../../core";
-import { GetListLoanUsecase } from "../../../domain";
-import { LoanDatasource } from "../../../external";
-import { LoanRepository } from "../../../infra";
+import { GetListPaymentUsecase } from "../../../domain";
+import { PaymentDatasource } from "../../../external";
+import { PaymentRepository } from "../../../infra";
 
-export const loanListDependences = () => {
+export const paymentListDependences = () => {
   container.register(CoreConstants.IApiClient,{useValue: new ApiClient()});
-  container.register(CoreConstants.ILoanDatasource,{useClass: LoanDatasource});
-  container.register(CoreConstants.ILoanRepository,{useClass: LoanRepository});
-  container.register(CoreConstants.GetListLoanUsecase,{useClass: GetListLoanUsecase});
+  container.register(CoreConstants.IPaymentDatasource,{useClass: PaymentDatasource});
+  container.register(CoreConstants.IPaymentRepository,{useClass: PaymentRepository});
+  container.register(CoreConstants.GetListPaymentUsecase,{useClass: GetListPaymentUsecase});
 }
