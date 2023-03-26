@@ -8,7 +8,7 @@ interface IProps {
 export class PixEntity {
   id: string;
   name: string;
-  type: string;
+  bank: string;
   date: string;
   amount: string;
 
@@ -21,7 +21,7 @@ export class PixEntity {
   }:IProps) {
     this.id = id,
     this.name = name,
-    this.type = bank,
+    this.bank = bank,
     this.date = date,
     this.amount = amount
   }

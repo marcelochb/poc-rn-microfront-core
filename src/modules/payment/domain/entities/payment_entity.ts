@@ -8,7 +8,7 @@ interface IProps {
 export class PaymentEntity {
   id: string;
   recipient: string;
-  type: string;
+  payer: string;
   dueDate: string;
   amount: string;
 
@@ -21,7 +21,7 @@ export class PaymentEntity {
   }:IProps) {
     this.id = id,
     this.recipient = recipient,
-    this.type = payer,
+    this.payer = payer,
     this.dueDate = dueDate,
     this.amount = amount
   }
