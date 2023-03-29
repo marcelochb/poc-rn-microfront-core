@@ -11,4 +11,4 @@ type IPixtDetailNavigationParams ={
 
 type IPixtDetailNavigationRoute = RouteProp<IPixtDetailNavigationParams, 'params'>;
 
-export const usePixtDetailController: IControllerGetData<PixtEntity>;
+export const usePixDetailController: IControllerGetData<PixtEntity>;
