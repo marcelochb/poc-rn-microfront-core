@@ -44,7 +44,7 @@ export class PixModel extends PixEntity {
       name: body.name,
       bank: body.bank,
       date: body.date,
-      amount: `R$ ${Number.parseFloat(body.amount).toLocaleString("pt-BR")}`
+      amount: Number.parseFloat(body.amount).toLocaleString("pt-BR",{minimumFractionDigits:2, style: 'currency', currency: 'BRL'})
     });
   }
 }

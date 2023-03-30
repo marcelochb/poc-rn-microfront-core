@@ -44,7 +44,7 @@ export class PaymentModel extends PaymentEntity {
       recipient: body.recipient,
       payer: body.payer,
       dueDate: body.dueDate,
-      amount: `R$ ${Number.parseFloat(body.amount).toLocaleString("pt-BR")}`
+      amount: Number.parseFloat(body.amount).toLocaleString("pt-BR",{minimumFractionDigits:2, style: 'currency', currency: 'BRL'})
     });
   }
 }

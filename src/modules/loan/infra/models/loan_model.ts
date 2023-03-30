@@ -39,7 +39,7 @@ export class LoanModel extends LoanEntity {
       id: body.id,
       name: body.name,
       type: body.type,
-      amount: `R$ ${Number.parseFloat(body.amount).toLocaleString("pt-BR")}`
+      amount: Number.parseFloat(body.amount).toLocaleString("pt-BR",{minimumFractionDigits:2, style: 'currency', currency: 'BRL'})
     });
   }
 
