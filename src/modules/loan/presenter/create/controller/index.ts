@@ -4,9 +4,7 @@ import { useState } from "react"
 import { container } from "tsyringe"
 import { CoreConstants } from "../../../../../core"
 import { ICreateLoanUsecase, LoanEntity } from "../../../domain"
-import { loanCreateDependences } from "../bind"
 
-loanCreateDependences();
 export const useLoanCreateController:IControllerFormData<LoanEntity> = (callback?: Function) => {
   const [error, setError] = useState(false);
   const useCase = container.resolve<ICreateLoanUsecase>(CoreConstants.CreateLoanUsecase);

@@ -1,6 +1,7 @@
+import { IApiClient } from "@poc/interfaces";
 import { AxiosResponse } from "axios";
 import { inject, injectable } from "tsyringe";
-import { IApiClient, CoreConstants } from "../../../../core";
+import { CoreConstants } from "../../../../core";
 import {  IPaymentDatasource, PaymentModel } from "../../infra";
 
 interface IProps {
@@ -13,13 +14,13 @@ export class PaymentDatasource implements IPaymentDatasource {
     private readonly apiClient: IApiClient
   ) {}
   async getList(): Promise<PaymentModel[]> {
-    const response =  await this.apiClient.get<PaymentModel[]>('/payment');
-    return response.data.map(body => PaymentModel.fromMap(body));
+    const response =  await this.apiClient.get('/payment');
+    return response.map((body:any) => PaymentModel.fromMap(body));
   }
 
   async getBy({ id }: IProps): Promise<PaymentModel> {
-    const response =  await this.apiClient.get<PaymentModel>(`/payment/${id}`);
-    return PaymentModel.fromMap(response.data);
+    const response =  await this.apiClient.get(`/payment/${id}`);
+    return PaymentModel.fromMap(response);
   }
 
   

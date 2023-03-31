@@ -2,11 +2,9 @@ import { useEffect, useState } from "react"
 import { container } from "tsyringe";
 import { CoreConstants } from "../../../../../core";
 import { IGetListPaymentUsecase, PaymentEntity } from "../../../domain";
-import { paymentListDependences } from "../bind";
 import { IControllerGetData } from "@poc/interfaces";
 import { useIsFocused } from "@react-navigation/native";
 
-paymentListDependences();
 export const usePaymentListController:IControllerGetData<PaymentEntity[]> = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);

@@ -4,10 +4,8 @@ import React from "react";
 import { container } from "tsyringe";
 import { CoreConstants } from "../../../../../core";
 import { IGetByPixUsecase, PixEntity } from "../../../domain";
-import { pixDetailDependences } from "../bind";
 import { IPixtDetailNavigationRoute } from "../interface";
 
-pixDetailDependences();
 export const usePixDetailController:IControllerGetData<PixEntity> = () => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(false);

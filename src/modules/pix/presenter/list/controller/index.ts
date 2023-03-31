@@ -2,11 +2,9 @@ import { useEffect, useState } from "react"
 import { container } from "tsyringe";
 import { CoreConstants } from "../../../../../core";
 import { IGetListPixUsecase, PixEntity } from "../../../domain";
-import { pixListDependences } from "../bind";
 import { IControllerGetData } from "@poc/interfaces";
 import { useIsFocused } from "@react-navigation/native";
 
-pixListDependences();
 export const usePixListController:IControllerGetData<PixEntity[]> = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);

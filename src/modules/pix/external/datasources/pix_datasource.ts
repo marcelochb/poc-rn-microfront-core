@@ -1,5 +1,6 @@
+import { IApiClient } from "@poc/interfaces";
 import { inject, injectable } from "tsyringe";
-import { IApiClient, CoreConstants } from "../../../../core";
+import { CoreConstants } from "../../../../core";
 import { IPixDatasource, PixModel } from "../../infra";
 
 interface IProps {
@@ -12,13 +13,13 @@ export class PixDatasource implements IPixDatasource {
     private readonly apiClient: IApiClient
   ) {}
   async getList(): Promise<PixModel[]> {
-    const response =  await this.apiClient.get<PixModel[]>('/pix');
-    return response.data.map(body => PixModel.fromMap(body));
+    const response =  await this.apiClient.get('/pix');
+    return response.map((body:any) => PixModel.fromMap(body));
   }
 
   async getBy({ id }: IProps): Promise<PixModel> {
-    const response =  await this.apiClient.get<PixModel>(`/pix/${id}`);
-    return PixModel.fromMap(response.data);
+    const response =  await this.apiClient.get(`/pix/${id}`);
+    return PixModel.fromMap(response);
   }
 
   

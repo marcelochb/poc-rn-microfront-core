@@ -1,15 +1,15 @@
 import 'reflect-metadata';
-import { ILoanDatasource, LoanModel } from '../../../../src/modules/loan/infra';
+import { ILoanDatasource } from '../../../../src/modules/loan/infra';
 import { container } from 'tsyringe';
 import { CoreConstants } from '../../../../src/core';
 import { LoanDatasource } from '../../../../src/modules/loan/external';
-import { getListMock, loanModelList, getByMock, loanModel, loanEntity } from '../../../../src/modules/loan/external/mocks';
+import { loanModelList, loanModel, loanEntity, loanJsonList, loanJson } from '../../../../src/modules/loan/external/mocks';
 
 describe('Loan Datasources |', () => {
   it("GetList => When request success, return LoanModel's array", async () => {
     class ApiMockClient {
-      get = jest.fn().mockImplementation(() => {
-        return getListMock;
+      get = jest.fn().mockImplementation(async() => {
+        return Promise.resolve(loanJsonList);
       });
     };
     container.register(CoreConstants.IApiClient,{useValue: new ApiMockClient()});
@@ -36,7 +36,7 @@ describe('Loan Datasources |', () => {
   it("GetBy => When request success, return LoanModel's array", async () => {
     class ApiMockClient {
       get = jest.fn().mockImplementation(() => {
-        return getByMock;
+        return loanJson;
       });
     };
     container.register(CoreConstants.IApiClient,{useValue: new ApiMockClient()});

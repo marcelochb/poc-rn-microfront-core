@@ -2,14 +2,14 @@ import 'reflect-metadata';
 import { container } from 'tsyringe';
 import { CoreConstants } from '../../../../../src/core';
 import { PaymentDatasource } from '../../../../../src/modules/payment/external/datasources/payment_datasource';
-import { getByPaymentMock, getListPaymentMock, paymentModel, paymentModelList } from '../../../../../src/modules/payment/external/mocks';
+import { paymentJson, paymentJsonList, paymentModel, paymentModelList } from '../../../../../src/modules/payment/external/mocks';
 import { IPaymentDatasource } from '../../../../../src/modules/payment/infra';
 
 describe('Payment Datasources |', () => {
   it("GetList => When request success, return PaymentModel's array", async () => {
     class ApiMockClient {
       get = jest.fn().mockImplementation(() => {
-        return getListPaymentMock;
+        return paymentJsonList;
       });
     };
     container.register(CoreConstants.IApiClient,{useValue: new ApiMockClient()});
@@ -36,7 +36,7 @@ describe('Payment Datasources |', () => {
   it("GetBy => When request success, return PaymentModel's array", async () => {
     class ApiMockClient {
       get = jest.fn().mockImplementation(() => {
-        return getByPaymentMock;
+        return paymentJson;
       });
     };
     container.register(CoreConstants.IApiClient,{useValue: new ApiMockClient()});

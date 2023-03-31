@@ -4,10 +4,8 @@ import React from "react";
 import { container } from "tsyringe";
 import { CoreConstants } from "../../../../../core";
 import { IGetByLoanUsecase, LoanEntity } from "../../../domain";
-import { loanDetailDependences } from "../bind";
 import { ILoanDetailNavigationRoute } from "../interface";
 
-loanDetailDependences();
 export const useLoanDetailController:IControllerGetData<LoanEntity> = () => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(false);

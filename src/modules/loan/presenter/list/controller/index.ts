@@ -1,12 +1,10 @@
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { container } from "tsyringe";
 import { CoreConstants } from "../../../../../core";
 import { IGetListLoanUsecase, LoanEntity } from "../../../domain";
-import { loanListDependences } from "../bind";
 import { IControllerGetData } from "@poc/interfaces";
-import { useFocusEffect, useIsFocused } from "@react-navigation/native";
+import { useIsFocused } from "@react-navigation/native";
 
-loanListDependences();
 export const useLoanListController:IControllerGetData<LoanEntity[]> = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);

@@ -1,2 +1,2 @@
 /* istanbul ignore file */
-export * from './api_client';
+export * from './axios_api_client';

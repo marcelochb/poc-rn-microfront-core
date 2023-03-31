@@ -1,14 +1,14 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
 import { CoreConstants } from '../../../../../src/core';
-import { getByPixMock, getListPixMock, PixDatasource, pixModel, pixModelList } from '../../../../../src/modules/pix/external';
+import { PixDatasource, pixJson, pixJsonList, pixModel, pixModelList } from '../../../../../src/modules/pix/external';
 import { IPixDatasource } from '../../../../../src/modules/pix/infra';
 
 describe('Pix Datasources |', () => {
   it("GetList => When request success, return PixModel's array", async () => {
     class ApiMockClient {
       get = jest.fn().mockImplementation(() => {
-        return getListPixMock;
+        return pixJsonList;
       });
     };
     container.register(CoreConstants.IApiClient,{useValue: new ApiMockClient()});
@@ -35,7 +35,7 @@ describe('Pix Datasources |', () => {
   it("GetBy => When request success, return PaymentModel's array", async () => {
     class ApiMockClient {
       get = jest.fn().mockImplementation(() => {
-        return getByPixMock;
+        return pixJson;
       });
     };
     container.register(CoreConstants.IApiClient,{useValue: new ApiMockClient()});

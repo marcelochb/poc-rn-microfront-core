@@ -4,10 +4,8 @@ import React from "react";
 import { container } from "tsyringe";
 import { CoreConstants } from "../../../../../core";
 import { IGetByPaymentUsecase, PaymentEntity } from "../../../domain";
-import { paymentDetailDependences } from "../bind";
 import { IPaymentDetailNavigationRoute } from "../interface";
 
-paymentDetailDependences();
 export const usePaymentDetailController:IControllerGetData<PaymentEntity> = () => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(false);
