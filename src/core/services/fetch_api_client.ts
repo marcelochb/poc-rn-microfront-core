@@ -7,10 +7,16 @@ export class FetchApiClient implements IApiClient {
   constructor() {
     this.baseUrl = 'http://localhost:3000'
   }
-  async post<T>(url:string,body: T): Promise<void> {
+  async post(url:string,body: any): Promise<void> {
     try {
-      // await this.baseUrl.post<T>(url,body);
-      await fetch(this.baseUrl+url,{method: 'POST'})
+      await fetch(this.baseUrl+url,{
+        method: 'POST', 
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      })
     } catch (error) {
       throw error
     }
@@ -18,7 +24,6 @@ export class FetchApiClient implements IApiClient {
 
   async get(url:string): Promise<any> {
     try {
-      // var response = await this.baseUrl.get(url);
       var response = await fetch(this.baseUrl+url);
       return await response.json();
     } catch (error) {
