@@ -15,10 +15,11 @@
 Project
 ├── __tests__: Unit tests
 |   ├── modules
-│   │   ├── quiz
+│   │   ├── loan | payment | pix
 │   │   │   ├── domain: Usecase unit test.
 │   │   │   ├── external: Datasource unit test.
 │   │   │   ├── infra: Repository unit test.
+│   │   │   ├── presenter: Controller unit test.
 ├── src
 │   ├── core: Tools used by all project.
 │   │   ├── constants: Inject dependency and state control.
@@ -40,17 +41,3 @@ Project
 │   │   ├── pix: Pix module with clean architecture layers.
 
 ```
-
-### How to build and run
-
-- `yarn`
-- `npx react-native run-android`
-- `cd ios && pod install && cd ..`
-- `npx react-native run-ios`
-
-### How to run integration test
-
-- `brew update && brew install node`
-- `brew tap wix/brew;brew install applesimutils;`
-- `npm install -g detox-cli`
-- `detox build && detox test`
