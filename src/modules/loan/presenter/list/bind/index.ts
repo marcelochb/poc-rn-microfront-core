@@ -1,13 +1,22 @@
 /* istanbul ignore file */
 import { container } from "tsyringe"
+import { Container } from "inversify";
 import { AxiosApiClient, CoreConstants } from "../../../../../core";
-import { FetchApiClient } from "../../../../../core/services/fetch_api_client";
-import { GetListLoanUsecase } from "../../../domain";
+import { GetListLoanUsecase, IGetListLoanUsecase, ILoanRepository } from "../../../domain";
 import { LoanDatasource } from "../../../external";
-import { LoanRepository } from "../../../infra";
+import { ILoanDatasource, LoanRepository } from "../../../infra";
+import { IApiClient } from "@poc/interfaces";
 
-export const loanListDependences = () => {
-  container.register(CoreConstants.ILoanDatasource,{useClass: LoanDatasource});
-  container.register(CoreConstants.ILoanRepository,{useClass: LoanRepository});
-  container.register(CoreConstants.GetListLoanUsecase,{useClass: GetListLoanUsecase});
+const loanListDependences = () => {
+  // container.register(CoreConstants.ILoanDatasource,{useClass: LoanDatasource});
+  // container.register(CoreConstants.ILoanRepository,{useClass: LoanRepository});
+  // container.register(CoreConstants.GetListLoanUsecase,{useClass: GetListLoanUsecase});
+  
 }
+const myContainer = new Container();
+myContainer.bind<IApiClient>(CoreConstants.IApiClient).to(AxiosApiClient);
+myContainer.bind<IGetListLoanUsecase>(CoreConstants.GetListLoanUsecase).to(GetListLoanUsecase);
+myContainer.bind<ILoanDatasource>(CoreConstants.ILoanDatasource).to(LoanDatasource);
+myContainer.bind<ILoanRepository>(CoreConstants.ILoanRepository).to(LoanRepository);
+
+export {myContainer, loanListDependences}

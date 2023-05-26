@@ -1,4 +1,4 @@
-import { inject, injectable } from "tsyringe";
+import { inject, injectable } from "inversify";
 import { CoreConstants } from "../../../../core/constants";
 import { ILoanRepository, LoanEntity } from "../../domain";
 import { ILoanDatasource } from "../datasources";
