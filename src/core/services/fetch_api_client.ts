@@ -1,6 +1,8 @@
 /* istanbul ignore file */
 import { IApiClient } from '@poc/interfaces';
+import { injectable } from 'inversify';
 
+@injectable()
 export class FetchApiClient implements IApiClient {
   baseUrl: string;
 
