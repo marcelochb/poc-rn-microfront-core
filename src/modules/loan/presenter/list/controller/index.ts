@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { CoreConstants } from "../../../../../core";
 import { IGetListLoanUsecase, LoanEntity } from "../../../domain";
-import { IControllerGetData } from "@poc/interfaces";
+import { IControllerGetData } from "../../../../../../../interfaces/src/controllers";
 import { useIsFocused } from "@react-navigation/native";
 import { loanBind } from "../../loan_bind";
 

@@ -5,7 +5,7 @@ import { FetchApiClient, CoreConstants } from "../../../core";
 import { CreateLoanUsecase, GetByLoanUsecase, GetListLoanUsecase, ICreateLoanUsecase, IGetByLoanUsecase, IGetListLoanUsecase, ILoanRepository } from "../domain";
 import { LoanDatasource } from "../external";
 import { ILoanDatasource, LoanRepository } from "../infra";
-import { IApiClient } from "@poc/interfaces";
+import { IApiClient } from "../../../../../interfaces/src/apiclient";
 
 
 export const loanBind = new Container();

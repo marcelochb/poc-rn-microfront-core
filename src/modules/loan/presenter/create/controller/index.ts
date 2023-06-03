@@ -1,4 +1,4 @@
-import { IControllerFormData, IControllerGetData } from "@poc/interfaces"
+import { IControllerFormData } from "../../../../../../../interfaces/src/controllers"
 import { useFormik } from "formik"
 import { useState } from "react"
 import { CoreConstants } from "../../../../../core"

@@ -1,4 +1,4 @@
-import { IApiClient } from "@poc/interfaces";
+import { IApiClient } from "../../../../../../interfaces/src/apiclient";
 import { inject, injectable } from "inversify";
 import { CoreConstants } from "../../../../core";
 import { ILoanDatasource, LoanModel } from "../../infra";

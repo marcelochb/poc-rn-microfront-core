@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import { IApiClient } from '@poc/interfaces';
+import { IApiClient } from '../../../../interfaces/src/apiclient';
 import { injectable } from 'inversify';
 
 @injectable()
