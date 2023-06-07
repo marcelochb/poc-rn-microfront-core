@@ -1,5 +1,5 @@
 import { IApiClient } from "@poc/interfaces";
-import { inject, injectable } from "inversify";
+import { inject, injectable } from "tsyringe";
 import { CoreConstants } from "../../../../core";
 import { ILoanDatasource, LoanModel } from "../../infra";
 

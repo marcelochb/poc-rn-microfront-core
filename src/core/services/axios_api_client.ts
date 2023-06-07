@@ -1,9 +1,7 @@
 /* istanbul ignore file */
 import { IApiClient } from '@poc/interfaces';
 import axios, { AxiosInstance } from 'axios';
-import { injectable } from 'inversify';
 
-@injectable()
 export class AxiosApiClient implements IApiClient {
   api: AxiosInstance;
 

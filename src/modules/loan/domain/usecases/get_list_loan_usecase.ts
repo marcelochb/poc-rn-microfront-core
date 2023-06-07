@@ -1,5 +1,5 @@
 import { LoanEntity } from "../entities";
-import { inject, injectable } from "inversify";
+import { inject, injectable } from "tsyringe";
 import { ILoanRepository } from "../repositories";
 import { CoreConstants } from "../../../../core";
 
