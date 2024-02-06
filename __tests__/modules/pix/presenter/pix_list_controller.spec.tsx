@@ -14,9 +14,6 @@ jest.mock("@react-navigation/native", () => ({
   useIsFocused: jest.fn().mockImplementation(() => true ),
 }));
 describe('Pix List Controller =>',() => {
-  beforeEach(() => {
-    jest.resetModules();
-  });
   it('When success request should retun IContrllerData<PixEntity[]>', async () => {
     class GetListPixMockUsecase {
       call = jest.fn().mockImplementation( async () => Promise.resolve(pixEntityList));

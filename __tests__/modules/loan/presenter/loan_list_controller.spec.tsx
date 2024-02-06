@@ -14,9 +14,6 @@ jest.mock("@react-navigation/native", () => ({
   useIsFocused: jest.fn().mockImplementation(() => true ),
 }));
 describe('Loan List Controller =>',() => {
-  beforeEach(() => {
-    jest.resetModules();
-  });
   it('When success request should retun IContrllerData<LoanEntity[]>', async () => {
     class GetListLoanMockUsecase {
       call = jest.fn().mockImplementation( async () => Promise.resolve(loanEntityList));
